@@ -1,4 +1,4 @@
-# Automaking_TimeTable_Maker :clipboard:
+# Automatic_TimeTable_Maker :clipboard:
 
 - **Title** : 대학교 시간표 자동 완성 프로그램
 - **Team** : 임지은(1명)
