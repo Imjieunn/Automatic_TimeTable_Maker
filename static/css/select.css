@@ -1,20 +1,32 @@
 /* html{height:98%; border: 3px solid saddlebrown;}
 body{height:98%; border: 3px solid sandybrown} */
 .outlier{text-align: center;}
-.top_box{border: 2px dotted red;}
-.content_box{width:1250px; height:1000px; display: inline-block;}
+.content_box{width:1250px; height:1000px; display: inline-block; margin-top: 40px;} 
 .select_subject
 {
     border: 3px solid indianred;
     display: inline-block;
     width: 80%;
     height: 15%;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;
 }
 .list_box
 {
-    border: 3px solid wheat;
     display: inline-block;
     width: 90%;
-    height: 95%;
+    height: 800px;
     overflow: auto;
+}
+
+table{
+    border:2px solid purple;
+    border-collapse: collapse;
+}
+th, td{
+    border: 2px solid purple;
+}
+#list{
+    font-size: 20px;
 }

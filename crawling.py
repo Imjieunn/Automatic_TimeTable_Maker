@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from time import sleep
 from openpyxl import Workbook,load_workbook
 from selenium.webdriver.common.by import By
+from app import uid
 
 # Chrome의 경우 | 아까 받은 chromedriver의 위치를 지정해준다.
 chromedrvier = 'C:\\Users\\user\\OSS\\chromedriver.exe'
@@ -15,16 +16,14 @@ driver.get('https://everytime.kr/login')
 driver.implicitly_wait(5)
 
 # 아이디/비밀번호를 입력해준다. (직접 입력)
-driver.find_element(By.NAME, 'userid').send_keys('jieun7761') #send_keys()부분에 직접 아이디 입력
-driver.find_element(By.NAME,'password').send_keys('dlawldms7761') #send_keys()부분에 직접 비번 입력
+driver.find_element(By.NAME, 'userid').send_keys(uid) #send_keys()부분에 직접 아이디 입력
+driver.find_element(By.NAME,'password').send_keys("dlawldms7761!") #send_keys()부분에 직접 비번 입력
 
 # 로그인 버튼을 눌러주자.
 driver.find_element(By.XPATH, '//*[@id="container"]/form/p[3]/input').click()
 
 # 시간표 접근 
 driver.get('https://everytime.kr/timetable')
-
-### 여기까지 okay!!! 
 
 #수업 목록에서 검색 클릭
 driver.find_element(By.XPATH,'//*[@id="container"]/ul/li[1]').click()
@@ -66,7 +65,7 @@ for tr in trs:
     result.append(tds[0].text) #과목코드
     result.append(tds[1].text) #과목명
     result.append(tds[2].text) #교수명
-    result.append(tds[3].text) #강의시간
+    result.append(tds[3].text.split(',')) #강의시간
     result.append(tds[4].text) #강의실
     result.append(tds[5].text) #구분
     result.append(tds[6].text) #학점
