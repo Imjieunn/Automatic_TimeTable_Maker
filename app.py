@@ -25,16 +25,9 @@ def select():
 
 @app.route('/result')
 def result():
-    name_list=[]
-    time_list=[]
-    num_list=[]
-    subject_name = request.args.get("subject")
-    name_list.append(subject_name)
-    time = request.args.get("time")
-    time_list.append(time)
-    num = request.args.get("num")
-    num_list.append(num)
-    return render_template("result.html")
+    val = request.form
+    print("val from html" + str(val))
+    # return render_template("result.html", result=val)
 
 if __name__ == '__main__':
     app.run(debug=True)

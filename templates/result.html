@@ -22,9 +22,10 @@
         </div>
     </div>
     <div class="inner_box2">
-      {{name}}
-      {{time}}
-      {{num}}
+      {% for key, value in result.items() %}
+        {{ key }}
+        {{ value }}
+      {% endfor %}
     </div>
   </div>
 
