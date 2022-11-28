@@ -23,11 +23,11 @@ def select():
 # def subject():
 #     return render_template("subject.html")
 
-@app.route('/result')
+@app.route('/result', methods=['GET','POST'])
 def result():
-    val = request.form
-    print("val from html" + str(val))
-    # return render_template("result.html", result=val)
+    if request.method == 'POST':
+        testDict = request.form.to_dict(flat=True)
+    return render_template("result.html", result = testDict)
 
 if __name__ == '__main__':
     app.run(debug=True)
