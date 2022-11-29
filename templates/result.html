@@ -22,12 +22,12 @@
         </div>
     </div>
     <div class="inner_box2">
-      {% for key, value in result.items() %}
+      {% for key, value in result_dict.items() %}
         {{ key }}
         {{ value }}
       {% endfor %}
 <br>
-      {% for i in result2 %}
+      {% for i in result_list %}
       {{ i }}
     {% endfor %}
     </div>
