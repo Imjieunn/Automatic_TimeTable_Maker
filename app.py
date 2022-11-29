@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
+import fnmatch
 
 app = Flask(__name__)
 
@@ -27,7 +28,12 @@ def select():
 def result():
     if request.method == 'POST':
         testDict = request.form.to_dict(flat=True)
-    return render_template("result.html", result = testDict)
+
+        time_list = []
+        for i in list(testDict.keys()):
+            if fnmatch.fnmatch(i, 'time*'):
+                time_list.append(testDict[i])
+    return render_template("result.html", result = testDict, result2 = time_list)
 
 if __name__ == '__main__':
     app.run(debug=True)
