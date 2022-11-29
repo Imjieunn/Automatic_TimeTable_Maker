@@ -178,8 +178,10 @@ def result():
 
         return array_index_list
 
-    # 입력 과목 중 일부 충돌시 처리 방법
-
+    # array로 scaling된 시간 data 2차원 metrics에 넣기(?? 필요한가잉 ??)
+    
+    # 입력 과목 수업시간 충돌시 처리 방법
+    
 
     # 조건에 따른 score 배부
 
