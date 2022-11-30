@@ -1,6 +1,6 @@
 import fnmatch
 #1 과목명 분류
-testDict = {'subject1':'오픈소스소프트웨어', 'time1':'목(1,2,3,4)', 'num1':'1', 'subject2':'프로그래밍입문2', 'time2':'월(5,6,7)/화(4,5)', 'num2':'2',
+testDict = {'subject1':'오픈소스소프트웨어', 'time1':'목(1,2,3,4)', 'num1':'1', 'subject2':'프로그래밍입문2', 'time2':'월(5,6,7)/목(4,5)', 'num2':'2', 'subject3':'기계학습', 'time3':'금(4)/월(5,6,7)', 'num3':'1',
  'avoid_time':'1교시', '점심시간':'예', '공강날짜':'금'}
 
 
@@ -43,6 +43,7 @@ def subject_info():
 
     #['오픈소스소프트웨어', ['목', ['1', '2', '3', '4']], 1]
     #['프로그래밍입문2', [['월', ['5', '6', '7']], ['화', ['4', '5']]], 2]
+# print(subject_info())
 
 # for idx, info in enumerate(subject_info()):
 #     print(idx, info)
@@ -110,7 +111,70 @@ def step1():
         result_list.append(info)
     return result_list
 
-print(step1())
-#[['오픈소스소프트웨어', ['목', ['1', '2', '3', '4']], 1, 10007], ['프로그래밍입문2', [['월', ['5', '6', '7']], ['화', ['4', '5']]], 2, 13]]
+# print(step1())
+#[['오픈소스소프트웨어', ['목', ['1', '2', '3', '4']], 1, 10007], ['프로그래밍입문2', [['월', ['5', '6', '7']], ['목', ['4', '5']]], 2, 13], ['기계학습', [['금', ['4']], ['월', ['5', '6', '7']]], 1, 10001]]
 
+def compare_list(list_1, list_2):
+    for i in list_1:
+        if i in list_2:
+            return True
+        else:
+            pass
 
+# 4단계 -> 입력한 교과목 중 시간대가 겹친다면?! -> 겹치는 과목 중에서 score이 높은거 선택 & 다른 하나는 버리기
+def overlap_detect():
+    overlap_list = []
+    for i in range(len(step1())-1):
+        for j in range(i+1, len(step1())):
+            if len(step1()[i][1][0])==2:
+                if(len(step1()[j][1][0]))==2:
+                    if ((step1()[i][1][0][0] == step1()[j][1][0][0]) and (compare_list(step1()[i][1][0][1], step1()[j][1][0][1])==True)):
+                        if(step1()[i][3] >= step1()[j][3]):
+                            overlap_list.append([step1()[i],step1()[j]])
+                        else:
+                            overlap_list.append([step1()[j],step1()[i]])
+                    elif ((step1()[i][1][1][0] == step1()[j][1][0][0]) and (compare_list(step1()[i][1][1][1], step1()[j][1][0][1])==True)):
+                        if(step1()[i][3] >= step1()[j][3]):
+                            overlap_list.append([step1()[i],step1()[j]])    
+                        else:
+                            overlap_list.append([step1()[j],step1()[i]])
+                    elif ((step1()[i][1][0][0] == step1()[j][1][1][0]) and (compare_list(step1()[i][1][0][1], step1()[j][1][1][1])==True)):
+                        if(step1()[i][3] >= step1()[j][3]):
+                            overlap_list.append([step1()[i],step1()[j]]) 
+                        else:
+                            overlap_list.append([step1()[j],step1()[i]])
+                    elif ((step1()[i][1][1][0] == step1()[j][1][1][0]) and (compare_list(step1()[i][1][1][1], step1()[j][1][1][1])==True)):
+                        if(step1()[i][3] >= step1()[j][3]):
+                            overlap_list.append([step1()[i],step1()[j]]) 
+                        else:
+                            overlap_list.append([step1()[j],step1()[i]])
+                else:
+                    if((step1()[i][1][0][0] == step1()[j][1][0]) and (compare_list(step1()[i][1][0][1],step1()[j][1][1])==True)):
+                        if(step1()[i][3] >= step1()[j][3]):
+                            overlap_list.append([step1()[i],step1()[j]])
+                        else:
+                            overlap_list.append([step1()[j],step1()[i]])
+                    elif((step1()[i][1][1][0] == step1()[j][1][0]) and (compare_list(step1()[i][1][1][1],step1()[j][1][1])==True)):
+                        if(step1()[i][3] >= step1()[j][3]):
+                            overlap_list.append([step1()[i],step1()[j]])
+                        else:
+                            overlap_list.append([step1()[j],step1()[i]])                      
+            else:
+                if len(step1()[j][1][0])==2:
+                    if((step1()[i][1][0] == step1()[j][1][0][0]) and (compare_list(step1()[i][1][1], step1()[j][1][0][1])==True)):
+                        if(step1()[i][3] >= step1()[j][3]):
+                            overlap_list.append([step1()[i],step1()[j]])
+                        else:
+                            overlap_list.append([step1()[j],step1()[i]])
+                    elif((step1()[i][1][0] == step1()[j][1][1][0]) and (compare_list(step1()[i][1][1], step1()[j][1][1][1])==True)):
+                        if(step1()[i][3] >= step1()[j][3]):
+                            overlap_list.append([step1()[i],step1()[j]])
+                        else:
+                            overlap_list.append([step1()[j],step1()[i]])
+                else:
+                    if((step1()[i][1][0] == step1()[j][1][0]) and (compare_list(step1[i][1][1], step1([j][1][1]))==True)):
+                        if(step1()[i][3] >= step1()[j][3]):
+                            overlap_list.append([step1()[i],step1()[j]])
+                        else:
+                            overlap_list.append([step1()[j],step1()[i]])
+    return overlap_list

@@ -190,7 +190,7 @@ def result():
 
         
     # 상위 3개의 조합 top3_list 생성 -> result_list = top3_list
-    return render_template("result.html", result_dict = testDict, result_list = time_list)
+    return render_template("result.html", result_dict = testDict)
 
 if __name__ == '__main__':
     app.run(debug=True)
