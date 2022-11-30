@@ -2,8 +2,8 @@
     height: 100%;
 } */
 .top_box{
-    font-size: 30px;
-    margin-top: 20px;
+    font-size: 60px;
+    margin-top: 50px;
     margin-left: 10px;
     text-align: center;
 }
@@ -12,27 +12,27 @@
 
 .content_box{
     border: 3px solid palegoldenrod;
-    margin-top: 10px;
+    margin-top: 150px;
     margin-left: 10px;
-    width:1250px; height:350px; display: inline-block;
+    width:1250px; height: 500px; display: inline-block;
 }
 
 .inner_box1{
     border: 3px solid palevioletred;
-    margin-top: 0.7%;
+    margin-top: 5.5%;
     margin-left: 1%;
     width: 30%;
-    height: 94%;
+    height: 70%;
     float: left;
     text-align: center;
 }
 
 .inner_box2{
     border: 3px solid palevioletred;
-    margin-top: 0.7%;
+    margin-top: 5.5%;
     margin-right: 1%;
     width: 65%;
-    height: 94%;
+    height: 70%;
     float: right;
 }
 
@@ -41,7 +41,7 @@
     margin-top: 10px;
     margin-left: 10px;
     font-size: 20px;
-    width: 70px;
+    width: 120px;
 }
 
 .calendar{

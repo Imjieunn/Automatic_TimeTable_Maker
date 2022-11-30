@@ -4,7 +4,7 @@ body{height:98%; border: 3px solid sandybrown} */
 .content_box{width:1250px; height:1000px; display: inline-block; margin-top: 40px;} 
 .select_subject
 {
-    border: 3px solid indianred;
+    border: 3px solid brown;
     display: inline-block;
     width: 80%;
     height: 15%;
@@ -21,11 +21,11 @@ body{height:98%; border: 3px solid sandybrown} */
 }
 
 table{
-    border:2px solid purple;
+    border:2px solid;
     border-collapse: collapse;
 }
 th, td{
-    border: 2px solid purple;
+    border: 2px solid;
 }
 #list{
     font-size: 20px;
