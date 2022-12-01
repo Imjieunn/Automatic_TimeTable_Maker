@@ -107,8 +107,6 @@ def step1():
         result_list.append(info)
     return result_list
 
-print(step1())
-
 def compare_list(list_1, list_2):
     for i in list_1:
         if i in list_2:
@@ -170,7 +168,7 @@ def overlap_detect():
             else:
                 if len(step1()[j][1][0])==2:
                     if((step1()[i][1][0] == step1()[j][1][0][0]) and (compare_list(step1()[i][1][1], step1()[j][1][0][1])==True)):
-                        if(step1()[i][3] >= step1()[j][3]):
+                        if(step1()[i][3] >= step1()[j][3]): 
                             overlap_list.append(step1()[i])
                             minor_list.append(step1()[j])
                         else:
@@ -230,5 +228,3 @@ def result_process():
 def sorted_list():
     sort_list = sorted(result_process(),key=lambda x: x[3], reverse=True)
     return sort_list
-
-print(sorted_list())
