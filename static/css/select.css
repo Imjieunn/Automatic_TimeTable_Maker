@@ -4,11 +4,10 @@ body{height:98%; border: 3px solid sandybrown} */
 .content_box{width:1250px; height:1000px; display: inline-block; margin-top: 40px;} 
 .select_subject
 {
-    border: 3px solid brown;
+    border: 3px solid green;
     display: inline-block;
     width: 80%;
     height: 15%;
-    font-size: 16px;
     text-align: center;
     margin-top: 20px;
 }
@@ -19,15 +18,32 @@ body{height:98%; border: 3px solid sandybrown} */
     height: 800px;
     overflow: auto;
 }
+.btn
+{
+    font-size: 30px; float: right; position: relative; top: 10px; right: 10px;
+    border-color:rgb(99, 189, 25);
+    background-color: rgba(255, 255, 0, 0.527);
+    border-radius: 10px;
+}
 
 table{
-    border:2px solid;
+    /* border:2px solid; */
     border-collapse: collapse;
     margin-top: 100px;
 }
-th, td{
-    border: 2px solid;
-}
+
+th{height: 50px; border-bottom: 3px solid rgb(99, 189, 25); border-top: 3px solid rgb(99, 189, 25);
+background-color: rgba(127, 255, 212, 0.589); opacity: 0.8;
+font-size: 30px;
+font-family: 'Stylish', sans-serif;} 
+
+td{border-bottom: 3px solid rgb(99, 189, 25);
+    font-family: 'Jua', sans-serif;
+    font-size: 20px;}
 #list{
     font-size: 20px;
+}
+
+div{
+    border-radius: 20px;
 }
