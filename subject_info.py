@@ -1,10 +1,11 @@
 import fnmatch
 #1 과목명 분류
-testDict = {'subject1':'오픈소스소프트웨어', 'time1':'목(1,2)/금(3)', 'num1':'1',
+testDict = {'subject1':'오픈소스소프트웨어', 'time1':'목(1,2,3,4)', 'num1':'1',
  'subject2':'프로그래밍입문2', 'time2':'목(1,2,3,4)', 'num2':'1',
- 'subject3':'프입1', 'time3':'목(3,4)', 'num3':'2',
- 'subject4':'지식재산권', 'time4':'목(2,3,4)/수(4,5,6)', 'num4':'3',
- 'avoid_time':'1교시', '점심시간':'예', '공강날짜':'금'}
+ 'subject3':'기계학습', 'time3':'화(1,2,3)', 'num3':'1',
+ 'subject4':'컴퓨터그래픽스', 'time4':'화(3,4,5)', 'num4':'1',
+ 'subject5':'기계학습', 'time5':'화(2,3,4,5)', 'num5':'1',
+ 'avoid_time':'7교시', '점심시간':'아니오', '공강날짜':'금'}
 
 
 def subject_info():
@@ -44,15 +45,6 @@ def subject_info():
     
     return result_list
 
-    #['오픈소스소프트웨어', ['목', ['1', '2', '3', '4']], 1]
-    #['프로그래밍입문2', [['월', ['5', '6', '7']], ['화', ['4', '5']]], 2]
-# print(subject_info())
-
-# for idx, info in enumerate(subject_info()):
-#     print(idx, info)
-# 0 ['오픈소스소프트웨어', ['목', ['1', '2', '3', '4']], 1]
-# 1 ['프로그래밍입문2', [['월', ['5', '6', '7']], ['화', ['4', '5']]], 2]
-
 #이 과정에서 사용하는 조건(3개 -> avoid_time, 점심시간, 공강날짜)
 def step1():
     result_list = []
@@ -78,7 +70,8 @@ def step1():
             if len(info[1][0]) == 2:
                 for i in range(len(info[1][0][1])):
                     if(info[1][0][1][i]) in ('4','5','6'):
-                        score-=3
+                        score-=10
+                        break
                 for i in range(len(info[1][1][1])):
                     if(info[1][1][1][i]) in ('4','5','6'):
                         score-=3
@@ -114,8 +107,7 @@ def step1():
         result_list.append(info)
     return result_list
 
-# print(step1())
-#[['오픈소스소프트웨어', ['목', ['1', '2', '3', '4']], 1, 10007], ['프로그래밍입문2', [['월', ['5', '6', '7']], ['목', ['4', '5']]], 2, 13], ['기계학습', [['금', ['4']], ['월', ['5', '6', '7']]], 1, 10001]]
+print(step1())
 
 def compare_list(list_1, list_2):
     for i in list_1:
@@ -124,7 +116,6 @@ def compare_list(list_1, list_2):
         else:
             pass
 
-# print(compare_list(step1()[0][1][1],step1()[2][1][1]))
 # 4단계 -> 입력한 교과목 중 시간대가 겹친다면?! -> 겹치는 과목 중에서 score이 높은거 선택 & 다른 하나는 버리기
 def overlap_detect():
     overlap_list = []
@@ -202,7 +193,6 @@ def overlap_detect():
                             overlap_list.append(step1()[j])
                             minor_list.append(step1()[i])
     return overlap_list, minor_list
-# print(overlap_detect())
 
 def non_overlap():
     non_overlap = []
@@ -216,28 +206,29 @@ def non_overlap():
     return non_overlap
 
 def result_process():
-    overlap_list, _ = overlap_detect()
-    result_list = overlap_list + non_overlap()
+    overlap_list, minor_list = overlap_detect()
 
+    # overlap_list에서 겹치는 요소 제거
+    new_overlap_list = []
+    for v in overlap_list:
+        if v not in new_overlap_list:
+            new_overlap_list.append(v)
+
+    # minor_list에 있는데 overlap_list에 있는 요소 제거
+    overlap_result_list = []
+    for element in new_overlap_list:
+        if element not in minor_list:
+            overlap_result_list.append(element)
+    
+    result_list = overlap_result_list + non_overlap()
     if (len(result_list) > 8):
         return(result_list[:8])
     else:
         return result_list
 
-print(result_process())
-
-# result_list 에서 겹치는 요소 제거
-def delete_elements():
-    new_list = []
-    for v in result_process():
-        if v not in new_list:
-            new_list.append(v)
-    return new_list
-
-print(delete_elements())
-
 # score 중심으로 sort!
 def sorted_list():
-    sort_list = sorted(delete_elements(),key=lambda x: x[3], reverse=True)
+    sort_list = sorted(result_process(),key=lambda x: x[3], reverse=True)
     return sort_list
 
+print(sorted_list())

@@ -66,185 +66,188 @@ def result():
             
             return result_list        
 
-    #이 과정에서 사용하는 조건(3개 -> avoid_time, 점심시간, 공강날짜)
-    def step1():
-        result_list = []
-        for info in subject_info():
-            score = 0
+        #이 과정에서 사용하는 조건(3개 -> avoid_time, 점심시간, 공강날짜)
+        def step1():
+            result_list = []
+            for info in subject_info():
+                score = 0
 
-            # 피하고 싶은 교시
-            select = testDict['avoid_time']
+                # 피하고 싶은 교시
+                select = testDict['avoid_time']
 
-            if len(info[1][0])==2:
-                if select[0] in (info[1][0][1] or info[1][1][1]):
-                    pass
-                else:
-                    score+=10
-            else:
-                if select[0] in info[1][1]:
-                    pass
-                else:
-                    score += 10
-            
-            # 점심시간
-            if testDict['점심시간'] == '예':
-                if len(info[1][0]) == 2:
-                    for i in range(len(info[1][0][1])):
-                        if(info[1][0][1][i]) in ('4','5','6'):
-                            score-=3
-                    for i in range(len(info[1][1][1])):
-                        if(info[1][1][1][i]) in ('4','5','6'):
-                            score-=3
-
-                else:
-                    for i in range(len(info[1][1])):
-                        if(info[1][1][i]) in ('4','5','6'):
-                            score-=3
-
-
-            # 공강날짜
-            select2 = testDict['공강']
-            if len(info[1][0])==2:
-                if select2[0] in (info[1][0][0] or info[1][1][0]):
-                    pass
-                else:
-                    score+=10
-            else:
-                if select2[0] in info[1][0]:
-                    pass
-                else:
-                    score += 10
-
-            # 과목 우선순위(1,2,3)
-            if info[2] == '1':
-                score += 10000
-            elif info[2] == '2':
-                score += 5
-            else:
-                pass
-
-            info.append(score)
-            result_list.append(info)
-        return result_list
-
-    def compare_list(list_1, list_2):
-        for i in list_1:
-            if i in list_2:
-                return True
-            else:
-                pass
-
-    # 4단계 -> 입력한 교과목 중 시간대가 겹친다면?! -> 겹치는 과목 중에서 score이 높은거 선택 & 다른 하나는 버리기
-    def overlap_detect():
-        overlap_list = []
-        minor_list = []
-        for i in range(len(step1())-1):
-            for j in range(i+1, len(step1())):
-                if len(step1()[i][1][0])==2:
-                    if(len(step1()[j][1][0]))==2:
-                        if ((step1()[i][1][0][0] == step1()[j][1][0][0]) and (compare_list(step1()[i][1][0][1], step1()[j][1][0][1])==True)):
-                            if(step1()[i][3] >= step1()[j][3]):
-                                overlap_list.append(step1()[i])
-                                minor_list.append(step1()[j])
-                            else:
-                                overlap_list.append(step1()[j])
-                                minor_list.append(step1()[i])
-                        elif ((step1()[i][1][1][0] == step1()[j][1][0][0]) and (compare_list(step1()[i][1][1][1], step1()[j][1][0][1])==True)):
-                            if(step1()[i][3] >= step1()[j][3]):
-                                overlap_list.append(step1()[i])  
-                                minor_list.append(step1()[j])  
-                            else:
-                                overlap_list.append(step1()[j])
-                                minor_list.append(step1()[i])
-                        elif ((step1()[i][1][0][0] == step1()[j][1][1][0]) and (compare_list(step1()[i][1][0][1], step1()[j][1][1][1])==True)):
-                            if(step1()[i][3] >= step1()[j][3]):
-                                overlap_list.append(step1()[i]) 
-                                minor_list.append(step1()[j])
-                            else:
-                                overlap_list.append(step1()[j])
-                                minor_list.append(step1()[i])
-                        elif ((step1()[i][1][1][0] == step1()[j][1][1][0]) and (compare_list(step1()[i][1][1][1], step1()[j][1][1][1])==True)):
-                            if(step1()[i][3] >= step1()[j][3]):
-                                overlap_list.append(step1()[i]) 
-                                minor_list.append(step1()[j])
-                            else:
-                                overlap_list.append(step1()[j])
-                                minor_list.append(step1()[i])
+                if len(info[1][0])==2:
+                    if select[0] in (info[1][0][1] or info[1][1][1]):
+                        pass
                     else:
-                        if((step1()[i][1][0][0] == step1()[j][1][0]) and (compare_list(step1()[i][1][0][1],step1()[j][1][1])==True)):
-                            if(step1()[i][3] >= step1()[j][3]):
-                                overlap_list.append(step1()[i])
-                                minor_list.append(step1()[j])
-                            else:
-                                overlap_list.append(step1()[j])
-                                minor_list.append(step1()[i])
-                        elif((step1()[i][1][1][0] == step1()[j][1][0]) and (compare_list(step1()[i][1][1][1],step1()[j][1][1])==True)):
-                            if(step1()[i][3] >= step1()[j][3]):
-                                overlap_list.append(step1()[i])
-                                minor_list.append(step1()[j])
-                            else:
-                                overlap_list.append(step1()[j])    
-                                minor_list.append(step1()[i])             
+                        score+=10
                 else:
-                    if len(step1()[j][1][0])==2:
-                        if((step1()[i][1][0] == step1()[j][1][0][0]) and (compare_list(step1()[i][1][1], step1()[j][1][0][1])==True)):
-                            if(step1()[i][3] >= step1()[j][3]):
-                                overlap_list.append(step1()[i])
-                                minor_list.append(step1()[j])
-                            else:
-                                overlap_list.append(step1()[j])
-                                minor_list.append(step1()[i])
-                        elif((step1()[i][1][0] == step1()[j][1][1][0]) and (compare_list(step1()[i][1][1], step1()[j][1][1][1])==True)):
-                            if(step1()[i][3] >= step1()[j][3]):
-                                overlap_list.append(step1()[i])
-                                minor_list.append(step1()[j])
-                            else:
-                                overlap_list.append(step1()[j])
-                                minor_list.append(step1()[i])
-                    ## 오류 포인트
+                    if select[0] in info[1][1]:
+                        pass
                     else:
-                        if((step1()[i][1][0] == step1()[j][1][0]) and (compare_list(step1()[i][1][1], step1()[j][1][1]) == True)):
-                            if(step1()[i][3] >= step1()[j][3]):
-                                overlap_list.append(step1()[i])
-                                minor_list.append(step1()[j])
-                            else:
-                                overlap_list.append(step1()[j])
-                                minor_list.append(step1()[i])
-        return overlap_list, minor_list
+                        score += 10
+                
+                # 점심시간
+                if testDict['점심시간'] == '예':
+                    if len(info[1][0]) == 2:
+                        for i in range(len(info[1][0][1])):
+                            if(info[1][0][1][i]) in ('4','5','6'):
+                                score-=3
+                        for i in range(len(info[1][1][1])):
+                            if(info[1][1][1][i]) in ('4','5','6'):
+                                score-=3
 
-    def non_overlap():
-        non_overlap = []
-        a, b = overlap_detect()
-        c=a+b
+                    else:
+                        for i in range(len(info[1][1])):
+                            if(info[1][1][i]) in ('4','5','6'):
+                                score-=3
 
-        for x in step1():
-            if x not in c:
-                non_overlap.append(x)
 
-        return non_overlap
+                # 공강날짜
+                select2 = testDict['공강']
+                if len(info[1][0])==2:
+                    if select2[0] in (info[1][0][0] or info[1][1][0]):
+                        pass
+                    else:
+                        score+=10
+                else:
+                    if select2[0] in info[1][0]:
+                        pass
+                    else:
+                        score += 10
 
-    def result_process():
-        overlap_list, _ = overlap_detect()
-        result_list = overlap_list + non_overlap()
+                # 과목 우선순위(1,2,3)
+                if info[2] == '1':
+                    score += 10000
+                elif info[2] == '2':
+                    score += 5
+                else:
+                    pass
 
-        if (len(result_list) > 8):
-            return(result_list[:8])
-        else:
+                info.append(score)
+                result_list.append(info)
             return result_list
 
-    # result_list 에서 겹치는 요소 제거
-    def delete_elements():
-        new_list = []
-        for v in result_process():
-            if v not in new_list:
-                new_list.append(v)
-        return new_list
+        def compare_list(list_1, list_2):
+            for i in list_1:
+                if i in list_2:
+                    return True
+                else:
+                    pass
 
-    # score 중심으로 sort!
-    def sorted_list():
-        sort_list = sorted(delete_elements(),key=lambda x: x[3], reverse=True)
-        return sort_list
+        # 4단계 -> 입력한 교과목 중 시간대가 겹친다면?! -> 겹치는 과목 중에서 score이 높은거 선택 & 다른 하나는 버리기
+        def overlap_detect():
+            overlap_list = []
+            minor_list = []
+            for i in range(len(step1())-1):
+                for j in range(i+1, len(step1())):
+                    if len(step1()[i][1][0])==2:
+                        if(len(step1()[j][1][0]))==2:
+                            if ((step1()[i][1][0][0] == step1()[j][1][0][0]) and (compare_list(step1()[i][1][0][1], step1()[j][1][0][1])==True)):
+                                if(step1()[i][3] >= step1()[j][3]):
+                                    overlap_list.append(step1()[i])
+                                    minor_list.append(step1()[j])
+                                else:
+                                    overlap_list.append(step1()[j])
+                                    minor_list.append(step1()[i])
+                            elif ((step1()[i][1][1][0] == step1()[j][1][0][0]) and (compare_list(step1()[i][1][1][1], step1()[j][1][0][1])==True)):
+                                if(step1()[i][3] >= step1()[j][3]):
+                                    overlap_list.append(step1()[i])  
+                                    minor_list.append(step1()[j])  
+                                else:
+                                    overlap_list.append(step1()[j])
+                                    minor_list.append(step1()[i])
+                            elif ((step1()[i][1][0][0] == step1()[j][1][1][0]) and (compare_list(step1()[i][1][0][1], step1()[j][1][1][1])==True)):
+                                if(step1()[i][3] >= step1()[j][3]):
+                                    overlap_list.append(step1()[i]) 
+                                    minor_list.append(step1()[j])
+                                else:
+                                    overlap_list.append(step1()[j])
+                                    minor_list.append(step1()[i])
+                            elif ((step1()[i][1][1][0] == step1()[j][1][1][0]) and (compare_list(step1()[i][1][1][1], step1()[j][1][1][1])==True)):
+                                if(step1()[i][3] >= step1()[j][3]):
+                                    overlap_list.append(step1()[i]) 
+                                    minor_list.append(step1()[j])
+                                else:
+                                    overlap_list.append(step1()[j])
+                                    minor_list.append(step1()[i])
+                        else:
+                            if((step1()[i][1][0][0] == step1()[j][1][0]) and (compare_list(step1()[i][1][0][1],step1()[j][1][1])==True)):
+                                if(step1()[i][3] >= step1()[j][3]):
+                                    overlap_list.append(step1()[i])
+                                    minor_list.append(step1()[j])
+                                else:
+                                    overlap_list.append(step1()[j])
+                                    minor_list.append(step1()[i])
+                            elif((step1()[i][1][1][0] == step1()[j][1][0]) and (compare_list(step1()[i][1][1][1],step1()[j][1][1])==True)):
+                                if(step1()[i][3] >= step1()[j][3]):
+                                    overlap_list.append(step1()[i])
+                                    minor_list.append(step1()[j])
+                                else:
+                                    overlap_list.append(step1()[j])    
+                                    minor_list.append(step1()[i])             
+                    else:
+                        if len(step1()[j][1][0])==2:
+                            if((step1()[i][1][0] == step1()[j][1][0][0]) and (compare_list(step1()[i][1][1], step1()[j][1][0][1])==True)):
+                                if(step1()[i][3] >= step1()[j][3]):
+                                    overlap_list.append(step1()[i])
+                                    minor_list.append(step1()[j])
+                                else:
+                                    overlap_list.append(step1()[j])
+                                    minor_list.append(step1()[i])
+                            elif((step1()[i][1][0] == step1()[j][1][1][0]) and (compare_list(step1()[i][1][1], step1()[j][1][1][1])==True)):
+                                if(step1()[i][3] >= step1()[j][3]):
+                                    overlap_list.append(step1()[i])
+                                    minor_list.append(step1()[j])
+                                else:
+                                    overlap_list.append(step1()[j])
+                                    minor_list.append(step1()[i])
+                        ## 오류 포인트
+                        else:
+                            if((step1()[i][1][0] == step1()[j][1][0]) and (compare_list(step1()[i][1][1], step1()[j][1][1]) == True)):
+                                if(step1()[i][3] >= step1()[j][3]):
+                                    overlap_list.append(step1()[i])
+                                    minor_list.append(step1()[j])
+                                else:
+                                    overlap_list.append(step1()[j])
+                                    minor_list.append(step1()[i])
+            return overlap_list, minor_list
 
+        def non_overlap():
+            non_overlap = []
+            a, b = overlap_detect()
+            c=a+b
+
+            for x in step1():
+                if x not in c:
+                    non_overlap.append(x)
+
+            return non_overlap
+
+        def result_process():
+            overlap_list, minor_list = overlap_detect()
+
+            # overlap_list에서 겹치는 요소 제거
+            new_overlap_list = []
+            for v in overlap_list:
+                if v not in new_overlap_list:
+                    new_overlap_list.append(v)
+
+            # minor_list에 있는데 overlap_list에 있는 요소 제거
+            overlap_result_list = []
+            for element in new_overlap_list:
+                if element not in minor_list:
+                    overlap_result_list.append(element)
+            
+            result_list = overlap_result_list + non_overlap()
+            if (len(result_list) > 8):
+                return(result_list[:8])
+            else:
+                return result_list
+
+        # score 중심으로 sort!
+        def sorted_list():
+            sort_list = sorted(result_process(),key=lambda x: x[3], reverse=True)
+            return sort_list
     return render_template("result.html", result = sorted_list())
 
 if __name__ == '__main__':
