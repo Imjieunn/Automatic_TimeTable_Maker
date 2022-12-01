@@ -232,9 +232,20 @@ def result():
         else:
             return result_list
 
-## result_list => score순으로 sorted 처리!
+    # result_list 에서 겹치는 요소 제거
+    def delete_elements():
+        new_list = []
+        for v in result_process():
+            if v not in new_list:
+                new_list.append(v)
+        return new_list
 
-    return render_template("result.html", result = result_process())
+    # score 중심으로 sort!
+    def sorted_list():
+        sort_list = sorted(delete_elements(),key=lambda x: x[3], reverse=True)
+        return sort_list
+
+    return render_template("result.html", result = sorted_list())
 
 if __name__ == '__main__':
     app.run(debug=True)

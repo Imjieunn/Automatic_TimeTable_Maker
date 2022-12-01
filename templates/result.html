@@ -22,9 +22,20 @@
         </div>
     </div>
     <div class="inner_box2">
-      {% for i in result %}
-      {{ i }}
-    {% endfor %}
+      <div class="text">
+        {% for i in result %}
+        {{'- '}}
+        과목명 : {{ i[0] }}<br>
+        &nbsp;&nbsp;수업 시간 : {{ i[1][0] }}
+        {{'('}}
+          {% for x in i[1][1] %}
+          {{ x }}
+          {% endfor %}
+          {{')'}}
+          <br><br>
+      {% endfor %}
+      <p style="color: red;">** 출력되는 과목 순서는 '우선순위' 입니다 **</p>
+      </div>
     </div>
   </div>
 

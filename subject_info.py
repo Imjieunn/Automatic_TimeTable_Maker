@@ -124,7 +124,7 @@ def compare_list(list_1, list_2):
         else:
             pass
 
-print(compare_list(step1()[0][1][1],step1()[2][1][1]))
+# print(compare_list(step1()[0][1][1],step1()[2][1][1]))
 # 4단계 -> 입력한 교과목 중 시간대가 겹친다면?! -> 겹치는 과목 중에서 score이 높은거 선택 & 다른 하나는 버리기
 def overlap_detect():
     overlap_list = []
@@ -202,7 +202,7 @@ def overlap_detect():
                             overlap_list.append(step1()[j])
                             minor_list.append(step1()[i])
     return overlap_list, minor_list
-print(overlap_detect())
+# print(overlap_detect())
 
 def non_overlap():
     non_overlap = []
@@ -224,12 +224,20 @@ def result_process():
     else:
         return result_list
 
-# print(result_process())
+print(result_process())
 
-([['오픈소스소프트웨어', [['목', ['1', '2']], ['금', ['3']]], 1, 10010], 
-['오픈소스소프트웨어', [['목', ['1', '2']], ['금', ['3']]], 1, 10010],
- ['프로그래밍입문2', ['목', ['1', '2', '3', '4']], 1, 10007]],
+# result_list 에서 겹치는 요소 제거
+def delete_elements():
+    new_list = []
+    for v in result_process():
+        if v not in new_list:
+            new_list.append(v)
+    return new_list
 
- [['프로그래밍입문2', ['목', ['1', '2', '3', '4']], 1, 10007],
-  ['지식재산권', [['목', ['2', '3', '4']], ['수', ['4', '5', '6']]], 3, 8]
-  , ['지식재산권', [['목', ['2', '3', '4']], ['수', ['4', '5', '6']]], 3, 8]])
+print(delete_elements())
+
+# score 중심으로 sort!
+def sorted_list():
+    sort_list = sorted(delete_elements(),key=lambda x: x[3], reverse=True)
+    return sort_list
+
