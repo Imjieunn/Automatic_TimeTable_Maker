@@ -6,13 +6,14 @@
     margin-left: 10px;
     text-align: center;
     font-family: 'Stylish', sans-serif;
+    /* border: 3px solid; */
 }
 
 .outlier{text-align: center;}
 
 .content_box{
     border: 3px solid green;
-    margin-top: 60px;
+    margin-top: 20px;
     margin-left: 10px;
     width:1250px; height: 850px; display: inline-block;
 }
@@ -60,16 +61,3 @@
     font-weight: 600;
     font-family: 'Stylish', sans-serif;
 }
-
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    text-align: center;
-    height: 10px;
-}
-th, td {
-    padding: 20px;
-}
-/* th {
-    text-align: center;
-} */
