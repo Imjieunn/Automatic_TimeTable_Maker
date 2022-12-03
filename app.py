@@ -3,32 +3,20 @@ import fnmatch
 
 app = Flask(__name__)
 
-@app.route('/') # 기본적 page -> main page
+@app.route('/') # 기본 page -> main page
 def main():
-    # 원하는 파이썬 코드 작성 -> 해당 html로 변수 넘겨주기
     return render_template("main.html")
-
-# @app.route('/login.html')
-# def login():
-#     # id = request.args.get("id")
-#     # pw = request.args.get("pw")
-#     import crawling
-#     return render_template("login.html")
-
 
 @app.route('/select')
 def select():
     return render_template("select.html")
-
-# @app.route('/subject.html')
-# def subject():
-#     return render_template("subject.html")
 
 @app.route('/result', methods=['GET','POST'])
 def result():
     if request.method == 'POST':
         testDict = request.form.to_dict(flat=True)
 
+        # 받아온 입력 전처리
         def subject_info():
             subject_list = []
             for i in list(testDict.keys()):
@@ -66,7 +54,7 @@ def result():
             
             return result_list        
 
-        #이 과정에서 사용하는 조건(3개 -> avoid_time, 점심시간, 공강날짜)
+        # 조건 처리(3개 -> avoid_time, 점심시간, 공강날짜)
         def step1():
             result_list = []
             for info in subject_info():
@@ -134,7 +122,7 @@ def result():
                 else:
                     pass
 
-        # 4단계 -> 입력한 교과목 중 시간대가 겹친다면?! -> 겹치는 과목 중에서 score이 높은거 선택 & 다른 하나는 버리기
+        # 중복되는 과목 처리
         def overlap_detect():
             overlap_list = []
             minor_list = []
@@ -201,7 +189,6 @@ def result():
                                 else:
                                     overlap_list.append(step1()[j])
                                     minor_list.append(step1()[i])
-                        ## 오류 포인트
                         else:
                             if((step1()[i][1][0] == step1()[j][1][0]) and (compare_list(step1()[i][1][1], step1()[j][1][1]) == True)):
                                 if(step1()[i][3] >= step1()[j][3]):
