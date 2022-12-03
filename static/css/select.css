@@ -24,6 +24,7 @@ body{height:98%; border: 3px solid sandybrown} */
     border-color:rgb(99, 189, 25);
     background-color: rgba(255, 255, 0, 0.527);
     border-radius: 10px;
+    font-family: 'Stylish', sans-serif;
 }
 
 table{
