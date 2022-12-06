@@ -1,4 +1,5 @@
 # Automatic_TimeTable_Maker :clipboard:
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 <!--### 대학교 시간표 자동 완성 프로그램-->
 
@@ -79,22 +80,29 @@
 이를 기반으로 '장바구니' 혹은 '수강신청'을 하고자 한다면 왼쪽에 있는 '장바구니러담으러 가기' 를 눌러 학교 수강신청 페이지로 이동한다.<br>
 
 ## Getting Started
-**click `Use this template` and use this template!**
+### Download the code
+1. Download **directly** <br>
+Click code button and Download zip
+
+2. Download in `terminal`
+```
+    $ git clone https://github.com/Imjieunn/Automatic_TimeTable_Maker.git
+```    
+
+```
+    $ npm install
+```
 
 ### Installing
-------
-Install and update using `pip`_:
+Install and update using `pip`
 
-.. code-block:: text
+    $ pip install Flask
+### Running
+Running a program `app.py`
 
-    $ pip install -U Flask
+    $ flask run
+      * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 
-.. _pip: https://pip.pypa.io/en/stable/getting-started/
-
-'''
-$ flask run
-  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-'''
 
 ## Authors
   - **Jieun Im** - <jieun776121@gmail.com>
