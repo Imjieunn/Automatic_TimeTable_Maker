@@ -50,6 +50,10 @@
 |app.py||
 
 ### 전반적인 프로그램 개요 설명
+1. main page
+2. select page
+3. result page
+
 ## Getting Started
 **click `Use this template` and use this template!**
 <!--
