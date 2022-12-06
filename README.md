@@ -28,11 +28,11 @@
 ### 화면 구성
 |app.py|URL|TEMPLATES|
 |-------|-----|--------|
-|main(메인 페이지)|localhost:5000|main.html|
-|select(과목입력 및 조건선택)|localhost:5000/select|select.html|
-|result(조합 완료 페이지)|localhost:5000/result|result.html|
+|main(메인 페이지)|localhost:5000 or http://127.0.0.1:5000|main.html|
+|select(과목입력 및 조건선택)|localhost:5000/select or http://127.0.0.1:5000/select|select.html|
+|result(조합 완료 페이지)|localhost:5000/result or http://127.0.0.1:5000/result|result.html|
 
-*실행했을 때 페이지가 화면에 너무 딱 맞을 경우 화면 비율을 100%에서 80-90%로 줄여보는 것을 추천한다*
+* 'localhost:5000' 로 실행했을 때 페이지가 화면에 너무 딱 맞을 경우 화면 비율을 100%에서 80-90%로 줄여보는 것을 추천한다*
 
 ### 업로드 폴더 및 파일 설명
 |폴더명|설명|
@@ -53,8 +53,11 @@
 
 ### 전반적인 프로그램 개요 설명
 1. main page
+<img width="1000" alt="main page" src="https://user-images.githubusercontent.com/104711336/205801351-80896c71-5735-4900-affc-40f8ee85f996.png">
 2. select page
+<img width="1000" alt="select page" src="https://user-images.githubusercontent.com/104711336/205802337-e0d0e0c1-93eb-44b4-9d15-5a4dc19bc6fd.png">
 3. result page
+<img width="1000" alt="result page" src="https://user-images.githubusercontent.com/104711336/205802422-7d69c32f-5a7b-46cf-99cb-ce891fbecdac.png">
 
 ## Getting Started
 **click `Use this template` and use this template!**
