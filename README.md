@@ -80,34 +80,21 @@
 
 ## Getting Started
 **click `Use this template` and use this template!**
-<!--
-### Depencies
- Write about need to install the software and how to install them 
--->
+
 ### Installing
-<!-- A step by step series of examples that tell you how to get a development 
-env running
+------
+Install and update using `pip`_:
 
-Say what the step will be
+.. code-block:: text
 
-    Give the example
+    $ pip install -U Flask
 
-And repeat
+.. _pip: https://pip.pypa.io/en/stable/getting-started/
 
-    until finished
--->
-1. Click `Use this template` button 
-2. Create New Repository
-3. Update Readme and Others(Other features are noted in comments.)
-
-프로젝트를 처음 사용하기 위해 필요한 내용 포함
-- 프로젝트를 설치, 사용하기 위해 필요한 전제조건이 있는가
-- 어떻게 설치, 사용, 테스트하는가
-- 설치 가이드 문서는 어디에 있는가
-<!--
-## Deployment
- Add additional notes about how to deploy this on a live system
- -->
+'''
+$ flask run
+  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+'''
 
 ## Authors
   - **Jieun Im** - <jieun776121@gmail.com>
