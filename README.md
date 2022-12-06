@@ -28,9 +28,9 @@
 ### 화면 구성
 |app.py|URL|TEMPLATES|
 |-------|-----|--------|
-|main(메인 페이지)|localhost:5000 or http://127.0.0.1:5000|main.html|
-|select(과목입력 및 조건선택)|localhost:5000/select or http://127.0.0.1:5000/select|select.html|
-|result(조합 완료 페이지)|localhost:5000/result or http://127.0.0.1:5000/result|result.html|
+|main(메인 페이지)|localhost:5000 or 127.0.0.1:5000|main.html|
+|select(과목입력 및 조건선택)|localhost:5000/select or 127.0.0.1:5000/select|select.html|
+|result(조합 완료 페이지)|localhost:5000/result or 127.0.0.1:5000/result|result.html|
 
 * 'localhost:5000' 로 실행했을 때 페이지가 화면에 너무 딱 맞을 경우 화면 비율을 100%에서 80-90%로 줄여보는 것을 추천한다*
 
@@ -52,11 +52,21 @@
 |app.py||
 
 ### 전반적인 프로그램 개요 설명
-1. main page
+### 1. main page
 <img width="1000" alt="main page" src="https://user-images.githubusercontent.com/104711336/205801351-80896c71-5735-4900-affc-40f8ee85f996.png">
-2. select page
+프로그램의 시작 화면이다.<br>
+프로그램을 시작하고자 한다면 화면에 보이는 'Start'버튼을 누르면 된다.<br>
+
+### 2. select page
 <img width="1000" alt="select page" src="https://user-images.githubusercontent.com/104711336/205802337-e0d0e0c1-93eb-44b4-9d15-5a4dc19bc6fd.png">
-3. result page
+본인이 듣고자 하는 후보 과목들을 입력한다. (최대 15개 과목까지 입력 가능하다)<br>
+입력해야 할 과목별 정보는 '과목명', '수업시간', '순위' 이다.
+각 항목이 의미하는 바는 다음과 같다. <br><br>
+- 과목명 : 과목 이름을 입력하는 칸이다. 별다른 입력 형식은 없다.<br>
+- 수업시간 : <br>
+- 순위 : <br>
+
+### 3. result page
 <img width="1000" alt="result page" src="https://user-images.githubusercontent.com/104711336/205802422-7d69c32f-5a7b-46cf-99cb-ce891fbecdac.png">
 
 ## Getting Started
