@@ -38,19 +38,19 @@
 ### 업로드 폴더 및 파일 설명
 |폴더명|설명|
 |-----|-----|
-|.vscode||
-|__ pycache __||
-|static||
-|static - img||
-|static - css||
-|templates||
+|.vscode|using vscode|
+|__ pycache __|you can ignore is file to use this program|
+|static|include img folder and css folder|
+|static - img|contain images uesd in this program|
+|static - css|comtain css files used in this program(main.html, select.html, result.html)|
+|templates|contain html files used in this program(main.html, select.html, result.html)|
 
 |파일명|설명|
 |-----|----|
-|.gitignore||
-|License||
-|README.md||
-|app.py||
+|.gitignore|ignore files(not required to use this program)|
+|License|create License (Apache 2.0)|
+|README.md|overivew of this program|
+|app.py| `main file` : running this program|
 ----------------------------------------------------
 
 ### 전반적인 프로그램 개요 설명
