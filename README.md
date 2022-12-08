@@ -103,6 +103,9 @@ Running a program `app.py`
     $ flask run
       * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 
+## Reference
+- https://nanati.me/css-button-design/ (css - main page 버튼 디자인 코드 잠조)
+- https://alvarotrigo.com/blog/css-text-animations/ (css - main page animation text 디자인 코드 잠조)
 
 ## Authors
   - **Jieun Im** - <jieun776121@gmail.com>
