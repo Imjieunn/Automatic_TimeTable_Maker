@@ -16,7 +16,7 @@ def result():
     if request.method == 'POST':
         testDict = request.form.to_dict(flat=True)
 
-        # 받아온 입력 전처리
+        # 받아온 입력값 전처리
         def subject_info():
             subject_list = []
             for i in list(testDict.keys()):
@@ -60,7 +60,7 @@ def result():
             for info in subject_info():
                 score = 0
 
-                # 피하고 싶은 교시
+                # 피하고 싶은 교시 -> 조건 만족 시 10점 부여
                 select = testDict['avoid_time']
 
                 if len(info[1][0])==2:
@@ -74,7 +74,7 @@ def result():
                     else:
                         score += 10
                 
-                # 점심시간
+                # 점심시간 -> 조건 만족하지 않을 시 -3점씩 부여
                 if testDict['점심시간'] == '예':
                     if len(info[1][0]) == 2:
                         for i in range(len(info[1][0][1])):
@@ -90,7 +90,7 @@ def result():
                                 score-=3
 
 
-                # 공강날짜
+                # 공강날짜 -> 조건 만족 시 10점 부여
                 select2 = testDict['공강']
                 if len(info[1][0])==2:
                     if select2[0] in (info[1][0][0] or info[1][1][0]):
@@ -103,7 +103,7 @@ def result():
                     else:
                         score += 10
 
-                # 과목 우선순위(1,2,3)
+                # 과목 우선순위(1,2,3)에 점수 부여
                 if info[2] == '1':
                     score += 10000
                 elif info[2] == '2':
@@ -122,7 +122,7 @@ def result():
                 else:
                     pass
 
-        # 중복되는 과목 처리
+        # 시간대가 겹치는 과목 처리
         def overlap_detect():
             overlap_list = []
             minor_list = []
@@ -238,4 +238,4 @@ def result():
     return render_template("result.html", result = sorted_list())
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run('0.0.0.0', port = 5000, debug=True)
