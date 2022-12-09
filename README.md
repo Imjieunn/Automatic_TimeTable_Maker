@@ -92,11 +92,11 @@ $ git clone https://github.com/Imjieunn/Automatic_TimeTable_Maker.git
 ```
 $ npm install
 ```
+### Debugging (in VSCode)
+``` 
+flask debugging environment (launch.json)
+```
 
-### Installing
-Install and update using `pip`
-
-    $ pip install Flask
 ### Running
 Running a program `app.py`
 
