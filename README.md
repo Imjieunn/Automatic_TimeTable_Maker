@@ -102,6 +102,8 @@ Running a program `app.py`
 
     $ flask run
       * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+OR<br>
+`F5 (button)`
 
 ## Reference
 - https://nanati.me/css-button-design/ (css - main page 버튼 디자인 코드 잠조)
